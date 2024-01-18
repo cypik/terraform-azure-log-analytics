@@ -3,8 +3,9 @@ provider "azurerm" {
 }
 
 module "resource_group" {
-  source      = "git::https://github.com/cypik/terraform-azure-resource-group.git?ref=v1.0.0"
-  name        = "app"
+  source      = "cypik/resource-group/azure"
+  version     = "1.0.1"
+  name        = "app2"
   environment = "test"
   location    = "North Europe"
 }
