@@ -16,5 +16,4 @@ module "log-analytics" {
   environment                      = "test"
   resource_group_name              = module.resource_group.resource_group_name
   log_analytics_workspace_location = module.resource_group.resource_group_location
-
 }

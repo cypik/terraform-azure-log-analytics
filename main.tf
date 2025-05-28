@@ -32,29 +32,16 @@ resource "azurerm_monitor_diagnostic_setting" "example" {
   metric {
     category = "AllMetrics"
     enabled  = var.Metric_enable
-    retention_policy {
-      enabled = var.retention_policy_enabled
-      days    = var.days
-    }
+
   }
-  log {
+  enabled_log {
     category       = var.category
     category_group = "AllLogs"
-    retention_policy {
-      enabled = var.retention_policy_enabled
-      days    = var.days
-    }
-    enabled = var.log_enabled
   }
 
-  log {
+  enabled_log {
     category       = var.category
     category_group = "Audit"
-    retention_policy {
-      enabled = var.retention_policy_enabled
-      days    = var.days
-    }
-    enabled = var.log_enabled
   }
   lifecycle {
     ignore_changes = [log_analytics_destination_type]

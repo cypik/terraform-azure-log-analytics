@@ -1,6 +1,3 @@
-
-#Module      : LABEL
-#Description : Terraform label module variables.
 variable "name" {
   type        = string
   default     = ""
@@ -27,8 +24,8 @@ variable "label_order" {
 
 variable "managedby" {
   type        = string
-  default     = "Cypik"
-  description = "ManagedBy, eg 'cypik'."
+  default     = "info@cypik.com"
+  description = "ManagedBy, eg 'info@cypik.com'"
 }
 
 variable "enabled" {
@@ -67,6 +64,7 @@ variable "retention_in_days" {
   default     = null
   description = "The workspace data retention in days. Possible values are either 7 (Free Tier only) or range between 30 and 730."
 }
+
 variable "daily_quota_gb" {
   type        = string
   default     = "-1"
@@ -78,27 +76,19 @@ variable "internet_ingestion_enabled" {
   default     = true
   description = "Should the Log Analytics Workspace support ingestion over the Public Internet? Defaults to true."
 }
+
 variable "internet_query_enabled" {
   type        = bool
   default     = true
   description = "Should the Log Analytics Workspace support querying over the Public Internet? Defaults to true."
 }
-#### enable diagnostic setting
+
 variable "log_analytics_destination_type" {
   type        = string
   default     = "AzureDiagnostics"
   description = "Possible values are AzureDiagnostics and Dedicated, default to AzureDiagnostics. When set to Dedicated, logs sent to a Log Analytics workspace will go into resource specific tables, instead of the legacy AzureDiagnostics table."
 }
-variable "retention_policy_enabled" {
-  type        = bool
-  default     = false
-  description = "Is this Retention Policy enabled?"
-}
-variable "days" {
-  type        = number
-  default     = "90"
-  description = " The number of days for which this Retention Policy should apply."
-}
+
 variable "Metric_enable" {
   type        = bool
   default     = true
@@ -115,21 +105,18 @@ variable "category" {
   description = " The name of a Diagnostic Log Category Group for this Resource."
 }
 
-variable "log_enabled" {
-  type        = string
-  default     = true
-  description = " Is this Diagnostic Log enabled? Defaults to true."
-}
 variable "storage_account_id" {
   type        = string
   default     = null
   description = "The ID of the Storage Account where logs should be sent."
 }
+
 variable "eventhub_name" {
   type        = string
   default     = null
   description = "Specifies the name of the Event Hub where Diagnostics Data should be sent."
 }
+
 variable "eventhub_authorization_rule_id" {
   type        = string
   default     = null
