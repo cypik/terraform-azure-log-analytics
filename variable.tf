@@ -89,37 +89,12 @@ variable "log_analytics_destination_type" {
   default     = "AzureDiagnostics"
   description = "Possible values are AzureDiagnostics and Dedicated, default to AzureDiagnostics. When set to Dedicated, logs sent to a Log Analytics workspace will go into resource specific tables, instead of the legacy AzureDiagnostics table."
 }
-variable "retention_policy_enabled" {
-  type        = bool
-  default     = false
-  description = "Is this Retention Policy enabled?"
-}
-variable "days" {
-  type        = number
-  default     = "90"
-  description = " The number of days for which this Retention Policy should apply."
-}
-variable "Metric_enable" {
-  type        = bool
-  default     = true
-  description = "Is this Diagnostic Metric enabled? Defaults to true."
-}
+
 variable "diagnostic_setting_enable" {
   type    = bool
   default = true
 }
 
-variable "category" {
-  type        = string
-  default     = null
-  description = " The name of a Diagnostic Log Category Group for this Resource."
-}
-
-variable "log_enabled" {
-  type        = string
-  default     = true
-  description = " Is this Diagnostic Log enabled? Defaults to true."
-}
 variable "storage_account_id" {
   type        = string
   default     = null
@@ -134,4 +109,90 @@ variable "eventhub_authorization_rule_id" {
   type        = string
   default     = null
   description = "Specifies the ID of an Event Hub Namespace Authorization Rule used to send Diagnostics Data."
+}
+
+
+
+variable "enabled_logs" {
+  description = "List of diagnostic logs to enable"
+  type = list(object({
+    category       = optional(string)
+    category_group = optional(string)
+  }))
+  default = [
+    {
+      category       = null
+      category_group = "AllLogs"
+    }
+  ]
+}
+
+
+variable "enabled_metrics" {
+  description = "List of diagnostic metrics to enable"
+  type = list(object({
+    category = string
+  }))
+  default = [
+    {
+      category = "AllMetrics"
+    }
+  ]
+}
+
+variable "log_analytics_workspace_name" {
+  type        = string
+  default     = null
+  description = "Custom name for the Log Analytics Workspace (optional)"
+}
+
+variable "identity" {
+  type = object({
+    type         = optional(string, "SystemAssigned")
+    identity_ids = optional(list(string))
+  })
+  default = null
+}
+
+
+variable "allow_resource_only_permissions" {
+  type    = bool
+  default = true
+}
+
+variable "local_authentication_enabled" {
+  type    = bool
+  default = true
+}
+
+variable "cmk_for_query_forced" {
+  type    = bool
+  default = false
+}
+
+variable "reservation_capacity_in_gb_per_day" {
+  type        = number
+  default     = null
+  description = "Valid only when SKU is CapacityReservation"
+}
+
+variable "data_collection_rule_id" {
+  type    = string
+  default = null
+}
+
+variable "immediate_data_purge_on_30_days_enabled" {
+  type    = bool
+  default = false
+}
+
+variable "log_analytics_workspace_id" {
+  type    = string
+  default = null
+}
+
+variable "partner_solution_id" {
+  type        = string
+  default     = null
+  description = "The ID of the Storage Account where logs should be sent."
 }
