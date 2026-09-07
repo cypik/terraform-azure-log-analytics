@@ -23,7 +23,7 @@ for creating AZURE resources, and you can customize the inputs as needed. Below 
 ```hcl
 module "log-analytics" {
   source                           = "cypik/log-analytics/azure"
-  version                          = "1.0.2"
+  version                          = "1.0.3"
   name                             = "app"
   environment                      = "test"
   resource_group_name              = module.resource_group.resource_group_name
