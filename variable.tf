@@ -73,15 +73,15 @@ variable "daily_quota_gb" {
   description = "The workspace daily quota for ingestion in GB. Defaults to -1 (unlimited) if omitted."
 }
 
-variable "internet_ingestion_enabled" {
-  type        = bool
-  default     = true
-  description = "Should the Log Analytics Workspace support ingestion over the Public Internet? Defaults to true."
+variable "internet_ingestion_access_type" {
+  type        = string
+  default     = "Enabled"
+  description = "The type of access for the Log Analytics Workspace ingestion over the Public Internet. Possible values are `Enabled` and `Disabled`. Defaults to `Enabled`."
 }
-variable "internet_query_enabled" {
-  type        = bool
-  default     = true
-  description = "Should the Log Analytics Workspace support querying over the Public Internet? Defaults to true."
+variable "internet_query_access_type" {
+  type        = string
+  default     = "Enabled"
+  description = "The type of access for the Log Analytics Workspace querying over the Public Internet. Possible values are `Enabled` and `Disabled`. Defaults to `Enabled`."
 }
 #### enable diagnostic setting
 variable "log_analytics_destination_type" {

@@ -1,6 +1,6 @@
 module "labels" {
   source      = "cypik/labels/azure"
-  version     = "1.0.1"
+  version     = "1.0.3"
   name        = var.name
   environment = var.environment
   managedby   = var.managedby
@@ -24,8 +24,8 @@ resource "azurerm_log_analytics_workspace" "main" {
   data_collection_rule_id                 = var.data_collection_rule_id
   immediate_data_purge_on_30_days_enabled = var.immediate_data_purge_on_30_days_enabled
 
-  internet_ingestion_enabled = var.internet_ingestion_enabled
-  internet_query_enabled     = var.internet_query_enabled
+  internet_ingestion_access_type = var.internet_ingestion_access_type
+  internet_query_access_type     = var.internet_query_access_type
 
   dynamic "identity" {
     for_each = var.identity != null ? [var.identity] : []
